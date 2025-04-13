@@ -1,4 +1,5 @@
-import java.util.Scanner
+import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class DoubleDice {
   public static void main(String[] args) {
@@ -7,7 +8,55 @@ public class DoubleDice {
     Die die2 = new Die();
     
     double money = 100.00;
+    double betAmount;
     
     while (Math.abs(money - 0.0) > 0.000001) {
-      // Do something
+      System.out.printf("You have $%.2f/n", money);
+      System.out.println();
+      System.out.println("How much would you like to bet (Enter 0 to quit)?");
+
+      try {
+        betAmount = scnr.nextDouble();
+
+        if (betAmount == 0.0) {
+          System.out.println("See you around, winner!");
+          break;
+        }
+
+         if (betAmount < 0.0) {
+          System.out.println("You cannot bet a negative amount");
+          continue;
+        }
+
+        if (betAmount > money) {
+          System.out.println("You cannot bet more than you have");
+          continue;
+        }
+      }
+      catch (NumberFormatException e) {
+        System.out.println("Please enter a numeric bet");
+      }
+
+      die1.roll();
+      die2.roll();
+
+      System.out.println("You rolled a " + die1.toString(); + " and " + die2.toString());
+
+      if (die1.equals(die2)) {
+        System.out.println("You win %.2f/n", betAmount);
+        money += betAmount;
+      }
+      else {
+        System.out.println("You lose %.2f/n", betAmount);
+        money -= betAmount;
+      }
+
+      System.out.println();
     }
+
+    if (money <= 0.0) {
+      System.out.println("You are out of money!");
+      System.out.println("Better luck next time");
+    }
+  }
+}
