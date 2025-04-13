@@ -4,19 +4,23 @@ public class Die {
   private int value;
   private Random randGen = new Random();
 
+  // Default constructor
   public Die() {
     value = 0;
   }
   
+  // Method to roll the dice
   public void roll() {
     value = randGen.nextInt(6) + 1;
   }
 
+  // Overriding the equals() method
   @Override
   public boolean equals(Die die2) {
     return this.value == die2.value;
   }
 
+  // Overriding the toString() method
   @Override
   public String toString() {
     if (value == 1) {
