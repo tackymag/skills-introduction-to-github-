@@ -10,7 +10,7 @@ public class DoubleDice {
     double money = 100.00;
     double betAmount;
     
-    // Using the floating-point comparison technique to avoid small differences
+    // Using the floating-point comparison technique to avoid small differences being detected
     while (Math.abs(money - 0.0) > 0.000001) {
       System.out.printf("You have $%.2f\n", money);
       System.out.println();
